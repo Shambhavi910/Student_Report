@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Dec 28 21:13:25 2025
+
+@author: SHAMBHAVI ROY
+"""
+
+import numpy as np
+import pickle
+
+#loading the trained model
+loaded_model = pickle.load(open("C:/Users/SHAMBHAVI ROY/OneDrive/Desktop/Student's Report/trained_model.sav",'rb'))
+
+loaded_rf = loaded_model['rf_regressor']
+loaded_clf = loaded_model['classifier']
+loaded_sc = loaded_model['scaler_clf']
+loaded_sr = loaded_model['scaler_rf']
+
+input_data = (11.8,82.3,4.6)   #11,11.8,82.3,4.6,66.4,C,0
+
+input_np = np.array(input_data).reshape(1, -1)
+
+
+
+# Score prediction
+input_rf_scaled = loaded_sr.transform(input_np)
+
+predicted_score_rf = loaded_rf.predict(input_rf_scaled)[0]
+
+# Risk prediction
+input_clf_scaled = loaded_sc.transform(input_np)
+
+risk = loaded_clf.predict(input_clf_scaled)[0]
+
+
+print(f"Predicted Score: {predicted_score_rf:.2f}")
+
+if risk == 0:
+    print("🔧Early Warning: Student needs improvement.")
+else:
+    print("✅ Student is on the safe side.")
