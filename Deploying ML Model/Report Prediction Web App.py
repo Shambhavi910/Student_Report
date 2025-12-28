@@ -36,13 +36,12 @@ def report_prediction(input_data):
     risk = loaded_clf.predict(input_clf_scaled)[0]
     
     
-    print(f"Predicted Score: {predicted_score_rf:.2f}")
-    
     if risk == 0:
-        print("🔧Early Warning: Student needs improvement.")
+       risk_msg = "🔧 Early Warning: Student needs improvement."
     else:
-        print("✅ Student is on the safe side.")
-        
+       risk_msg = "✅ Student is on the safe side."
+
+    return f"Predicted Score: {predicted_score_rf:.2f}\n{risk_msg}"
         
         
 def main():
@@ -59,28 +58,18 @@ def main():
     #code for score prediction
     Score = ''
     
-    #code for risk prediction
-    Prediction=''
+   
     
     #creating a button for score prediction
     
-    if st.button('Predicted Score'):
+    if st.button('Predict Score'):
         Score = report_prediction([float(weekly_self_study_hours),
                                         float(attendance_percentage),
                                         float(class_participation),
                                         ])
         
         st.success(Score)
-    #creating a button for risk prediction
     
-    if st.button('Score Analysis'):
-        Prediction = report_prediction([float(weekly_self_study_hours),
-                                        float(attendance_percentage),
-                                        float(class_participation),
-                                        ])
         
-        st.success(Prediction)
-        
-        
-    if __name__ == '__main__':
-        main()
+if __name__ == '__main__':
+     main()
