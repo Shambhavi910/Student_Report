@@ -37,7 +37,7 @@ def report_prediction(input_data):
     
     
     if risk == 0:
-       risk_msg = "🔧 Early Warning: Student needs improvement."
+       risk_msg = "⚠️ Early Warning: Student needs improvement."
     else:
        risk_msg = "✅ Student is on the safe side."
 
