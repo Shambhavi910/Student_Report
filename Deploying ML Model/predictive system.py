@@ -36,6 +36,6 @@ risk = loaded_clf.predict(input_clf_scaled)[0]
 print(f"Predicted Score: {predicted_score_rf:.2f}")
 
 if risk == 0:
-    print("🔧Early Warning: Student needs improvement.")
+    print("⚠️Early Warning: Student is at risk.")
 else:
     print("✅ Student is on the safe side.")
